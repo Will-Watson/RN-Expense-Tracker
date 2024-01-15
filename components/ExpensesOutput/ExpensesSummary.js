@@ -1,14 +1,18 @@
 import { View, Text, StyleSheet } from 'react-native';
 
+const ExpensesSummary = ({ expenses, periodName }) => {
+  const expensesSum = expenses.reduce(
+    (sum, expense) => sum + expense.amount,
+    0
+  );
 
-const ExpensesSummary = () => {
   return (
     <View>
-      <Text>Last 7 Days</Text>
-      <Text>$177.95</Text>
+      <Text>{periodName}</Text>
+      <Text>${expensesSum.toFixed(2)}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 
