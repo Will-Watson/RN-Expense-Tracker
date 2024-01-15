@@ -1,9 +1,13 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-const ExpensesOutput = ({expenses}) => {
+import ExpensesSummary from './ExpensesSummary';
+import ExpensesList from './ExpensesList';
+
+const ExpensesOutput = ({ expenses }) => {
   return (
     <View>
-      <Text>Expenses Output</Text>
+      <ExpensesSummary />
+      <ExpensesList />
     </View>
   );
 };
