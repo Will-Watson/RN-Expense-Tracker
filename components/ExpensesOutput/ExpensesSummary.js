@@ -28,13 +28,12 @@ const styles = StyleSheet.create({
   period: {
     fontSize: 12,
     color: GlobalStyles.colors.primary400,
-
   },
   sum: {
     fontSize: 16,
     fontWeight: 'bold',
     color: GlobalStyles.colors.primary500,
-  }
+  },
 });
 
 export default ExpensesSummary;
