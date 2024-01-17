@@ -1,13 +1,15 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import IconButton from '../components/UI/IconButton';
 import Button from '../components/UI/Button';
 import { GlobalStyles } from '../constants/styles';
+import { EpensesContext } from '../store/expenses-context';
 
 const ManageExpense = ({ route, navigation }) => {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
+  const expensesContext = useContext(EpensesContext);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -16,6 +18,7 @@ const ManageExpense = ({ route, navigation }) => {
   }, [navigation, isEditing]);
 
   const deleteExpenseHandler = () => {
+    expensesContext.deleteExpense(editedExpenseId);
     navigation.goBack();
   };
 
