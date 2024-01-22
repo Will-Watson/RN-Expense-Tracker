@@ -4,12 +4,12 @@ import { View, StyleSheet } from 'react-native';
 import IconButton from '../components/UI/IconButton';
 import Button from '../components/UI/Button';
 import { GlobalStyles } from '../constants/styles';
-import { EpensesContext } from '../store/expenses-context';
+import { ExpensesContext } from '../store/expenses-context';
 
 const ManageExpense = ({ route, navigation }) => {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
-  const expensesContext = useContext(EpensesContext);
+  const expensesContext = useContext(ExpensesContext);
 
   useLayoutEffect(() => {
     navigation.setOptions({
