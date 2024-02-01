@@ -1,12 +1,12 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-const Input = () => {
+const Input = ({label, textInputConfig}) => {
   return (
     <View>
-      <Text>Description</Text>
-      <TextInput />
+      <Text>{label}</Text>
+      <TextInput {...textInputConfig} />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({});
