@@ -1,10 +1,14 @@
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet } from 'react-native';
 
 const ExpenseForm = () => {
   return (
-    <TextInput />
-  )
-}
+    <View>
+      <TextInput />
+      <TextInput />
+      <TextInput />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({});
 
