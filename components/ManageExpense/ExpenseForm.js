@@ -16,7 +16,7 @@ const ExpenseForm = () => {
       <Input
         label='Date'
         textInputConfig={{
-          placeHolder: 'YYYY-MM-DD',
+          placeholder: 'YYYY-MM-DD',
           maxLength: 10,
           onChangeText: () => {},
         }}
