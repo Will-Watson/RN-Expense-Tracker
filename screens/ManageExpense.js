@@ -27,6 +27,11 @@ const ManageExpense = ({ route, navigation }) => {
   };
 
   const confirmHandler = () => {
+    if (isEditing) {
+      expensesContext.updateExpense();
+    } else {
+      expensesContext.addExpense();
+    }
     navigation.goBack();
   };
 
