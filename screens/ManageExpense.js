@@ -28,9 +28,17 @@ const ManageExpense = ({ route, navigation }) => {
 
   const confirmHandler = () => {
     if (isEditing) {
-      expensesContext.updateExpense();
+      expensesContext.updateExpense(editedExpenseId, {
+        description: 'Test!!',
+        amount: 29.99,
+        date: new Date(),
+      });
     } else {
-      expensesContext.addExpense();
+      expensesContext.addExpense({
+        description: 'Test',
+        amount: 19.99,
+        date: new Date(),
+      });
     }
     navigation.goBack();
   };
