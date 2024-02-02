@@ -3,23 +3,37 @@ import { StyleSheet } from 'react-native';
 
 import ExpensesOutput from '../components/ExpensesOutput/ExpensesOutput';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
+import ErrorOverlay from '../components/UI/ErrorOverlay';
 import { ExpensesContext } from '../store/expenses-context';
 import { getDateMinusDays } from '../util/date';
 import { fetchExpenses } from '../util/http';
 
 const RecentExpenses = () => {
   const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState(null);
   const expensesContext = useContext(ExpensesContext);
 
   useEffect(() => {
     const getExpenses = async () => {
       setIsFetching(true);
-     const expenses = await fetchExpenses();
+      try {
+        const expenses = await fetchExpenses();
+        expensesContext.setExpenses(expenses);
+      } catch (error) {
+        setError('Could not fetch expenses!');
+      }
       setIsFetching(false);
-      expensesContext.setExpenses(expenses);
-    }
+    };
     getExpenses();
   }, []);
+
+  const errorHandler = () => {
+    setError(null);
+  };
+
+  if (error && !isFetching) {
+    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+  }
 
   if (isFetching) {
     return <LoadingOverlay />;
