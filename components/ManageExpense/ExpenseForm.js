@@ -4,6 +4,7 @@ import Input from './Input';
 import Button from '../UI/Button';
 
 import { getFormattedDate } from '../../util/date';
+import { GlobalStyles } from '../../constants/styles';
 
 const ExpenseForm = ({
   submitButtonLabel,
@@ -82,6 +83,7 @@ const ExpenseForm = ({
         <Input
           style={styles.rowInput}
           label='Amount'
+          invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: 'decimal-pad',
             onChangeText: inputChangedHandler.bind(this, 'amount'),
@@ -91,6 +93,7 @@ const ExpenseForm = ({
         <Input
           style={styles.rowInput}
           label='Date'
+          invalid={!inputs.date.isValid}
           textInputConfig={{
             placeholder: 'YYYY-MM-DD',
             maxLength: 10,
@@ -101,6 +104,7 @@ const ExpenseForm = ({
       </View>
       <Input
         label='Description'
+        invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
           autoCorrect: false,
@@ -109,7 +113,11 @@ const ExpenseForm = ({
           value: inputs.description.value,
         }}
       />
-      {formIsInvalid && <Text>Invalid Input Values - Please Check Entered Data</Text>}
+      {formIsInvalid && (
+        <Text style={styles.errorText}>
+          Invalid Input Values - Please Check Entered Data
+        </Text>
+      )}
       <View style={styles.buttons}>
         <Button style={styles.button} onPress={onCancel} mode='flat'>
           Cancel
@@ -148,6 +156,10 @@ const styles = StyleSheet.create({
   button: {
     minWidth: 120,
     marginHorizontal: 8,
+  },
+  errorText: {
+    textAlign: 'center',
+    color: GlobalStyles.colors.error500,
   },
 });
 
