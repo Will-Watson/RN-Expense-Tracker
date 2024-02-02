@@ -33,8 +33,6 @@ const ExpenseForm = ({
       description: inputValues.description,
     };
 
-    console.log(typeof expenseData.amount, expenseData.amount > 0);
-
     const amountIsValid = typeof expenseData.amount === 'number' && expenseData.amount > 0;
     const dateIsValid = expenseData.date.toString() !== 'Invalid Date';
     const descriptionIsValid = expenseData.description.trim().length > 0;
