@@ -4,7 +4,10 @@ const BACKEND_URL =
   'https://rn-expense-tracker-e7f44-default-rtdb.firebaseio.com';
 
 export const storeExpense = async (expenseData) => {
-  const response = await axios.post(BACKEND_URL + '/expenses.json', expenseData);
+  const response = await axios.post(
+    BACKEND_URL + '/expenses.json',
+    expenseData
+  );
   const id = response.data.name;
   return id;
 };
@@ -24,4 +27,12 @@ export const fetchExpenses = async () => {
     expenses.push(expenseObj);
   }
   return expenses;
+};
+
+export const updateExpense = (id, expenseData) => {
+  return axios.put(BACKEND_URL + `/expenses/${id}.json`, expenseData);
+};
+
+export const deleteExpense = (id) => {
+  return axios.delete(BACKEND_URL + `/expenses/${id}.json`);
 };
