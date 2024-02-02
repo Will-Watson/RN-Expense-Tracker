@@ -32,12 +32,12 @@ const ManageExpense = ({ route, navigation }) => {
     navigation.goBack();
   };
 
-  const confirmHandler = (expenseData) => {
+  const confirmHandler = async (expenseData) => {
     if (isEditing) {
       expensesContext.updateExpense(editedExpenseId, expenseData);
     } else {
-      storeExpense(expenseData);
-      expensesContext.addExpense(expenseData);
+      const id = await storeExpense(expenseData);
+      expensesContext.addExpense({...expenseData, id});
     }
     navigation.goBack();
   };

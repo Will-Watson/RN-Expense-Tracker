@@ -109,6 +109,7 @@ const ExpenseForm = ({
           multiline: true,
           autoCorrect: false,
           autoCapitalize: 'sentences',
+          maxLength: 20,
           onChangeText: inputChangedHandler.bind(this, 'description'),
           value: inputs.description.value,
         }}
