@@ -2,10 +2,10 @@ import { useLayoutEffect, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import IconButton from '../components/UI/IconButton';
-import Button from '../components/UI/Button';
 import ExpenseForm from '../components/ManageExpense/ExpenseForm';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesContext } from '../store/expenses-context';
+import { storeExpense } from '../util/http';
 
 const ManageExpense = ({ route, navigation }) => {
   const expensesContext = useContext(ExpensesContext);
@@ -13,7 +13,9 @@ const ManageExpense = ({ route, navigation }) => {
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId;
 
-  const selectedExpense = expensesContext.expenses.find(expense => expense.id === editedExpenseId);
+  const selectedExpense = expensesContext.expenses.find(
+    (expense) => expense.id === editedExpenseId
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -34,6 +36,7 @@ const ManageExpense = ({ route, navigation }) => {
     if (isEditing) {
       expensesContext.updateExpense(editedExpenseId, expenseData);
     } else {
+      storeExpense(expenseData);
       expensesContext.addExpense(expenseData);
     }
     navigation.goBack();
